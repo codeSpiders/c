@@ -1,84 +1,84 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include<stdio.h>
+#include<stdio.h>//æ³¨æ„ï¼šdefine,includeä¸æ˜¯å…³é”®å­—
 
-//sizeofµÄÓÃ·¨
+//sizeofçš„ç”¨æ³•
 /*int main() { 
 	int a = 10;
-	int arr[] = { 1,2,3,4,5 };//JavaÖĞ£¬¿É½«ÖĞÀ¨ºÅ·ÅÔÚintºóÃæ
-	printf("aµÄ³¤¶ÈÎª£º%d\n", sizeof (a));
-	printf("aµÄ³¤¶ÈÎª£º%d\n", sizeof a);//¿ÉÒÔ¿´³ö£¬sizeofÊÇ²Ù×÷·û 
-	printf("intµÄ³¤¶ÈÎª£º%d\n", sizeof(int));//µ±ÎªintÊ±£¬±ØĞë¼ÓÀ¨ºÅ	
-	printf("arrÊı×éµÄ³¤¶È£º%d\narrÊı×éµÄÔªËØµÄ³¤¶È£º%d\n", sizeof(arr), sizeof(arr[0]));
+	int arr[] = { 1,2,3,4,5 };//Javaä¸­ï¼Œå¯å°†ä¸­æ‹¬å·æ”¾åœ¨intåé¢
+	printf("açš„é•¿åº¦ä¸ºï¼š%d\n", sizeof (a));
+	printf("açš„é•¿åº¦ä¸ºï¼š%d\n", sizeof a);//å¯ä»¥çœ‹å‡ºï¼Œsizeofæ˜¯æ“ä½œç¬¦ 
+	printf("intçš„é•¿åº¦ä¸ºï¼š%d\n", sizeof(int));//å½“ä¸ºintæ—¶ï¼Œå¿…é¡»åŠ æ‹¬å·	
+	printf("arræ•°ç»„çš„é•¿åº¦ï¼š%d\narræ•°ç»„çš„å…ƒç´ çš„é•¿åº¦ï¼š%d\n", sizeof(arr), sizeof(arr[0]));
 	printf("%d\n%d\n", sizeof arr, sizeof arr[0] );	
-	int sz = sizeof arr / sizeof arr[0];//ÇóÊı×éµÄ³¤¶È£»
+	int sz = sizeof arr / sizeof arr[0];//æ±‚æ•°ç»„çš„é•¿åº¦ï¼›
 	printf("sz=%d\n", sz);
 	return 0;
 }*/
 
-//~µÄÓÃ·¨£¨°´ÎªÈ¡·´£©
+//~çš„ç”¨æ³•ï¼ˆæŒ‰ä¸ºå–åï¼‰
 /*int main() {
 	int a = 0;
 	int b = ~a;//-1
 	printf("%d\n", b);
-	return 0;   //0±íÊ¾false,·Ç0±íÊ¾true
+	return 0;   //0è¡¨ç¤ºfalse,é0è¡¨ç¤ºtrue
 }*/
 
-//++µÄÓÃ·¨
+//++çš„ç”¨æ³•
 /*int main() {
 	int a = 0;
-	int b = a++;//½ĞºóÖÃ++£¬ÏÈÊ¹ÓÃaµÄÖµ£¬ÔÙ¼Ó¼Ó
+	int b = a++;//å«åç½®++ï¼Œå…ˆä½¿ç”¨açš„å€¼ï¼Œå†åŠ åŠ 
 	int c = 0;
-	int d = ++c;//½ĞÇ°ÖÃ++£¬ÏÈ¼Ó¼Ó£¬ÔÙÊ¹ÓÃaµÄÖµ
+	int d = ++c;//å«å‰ç½®++ï¼Œå…ˆåŠ åŠ ï¼Œå†ä½¿ç”¨açš„å€¼
 	printf("a=%d;b=%d\n", a, b);
 	printf("c=%d;d=%d\n", c, d);
 	return 0;
 }*/
 
-//Âß¼­²Ù×÷·û¡£×¢Òâ£¬CÓïÑÔÖĞ£¬0Îªfalse£»·Ç0Îªtrue£»
+//é€»è¾‘æ“ä½œç¬¦ã€‚æ³¨æ„ï¼ŒCè¯­è¨€ä¸­ï¼Œ0ä¸ºfalseï¼›é0ä¸ºtrueï¼›
 /*int main() {
 	int a = 0;
 	int b = 5;
-	int c = a && b;    //×¢Òâ£¬Á½¸ö&²»ÊÇÎ»²Ù×÷·û
+	int c = a && b;    //æ³¨æ„ï¼Œä¸¤ä¸ª&ä¸æ˜¯ä½æ“ä½œç¬¦
 	int d = a || b;
-	printf("c=%d\n", c);//false·µ»Ø0£¬true·µ»Ø1£»
+	printf("c=%d\n", c);//falseè¿”å›0ï¼Œtrueè¿”å›1ï¼›
 	printf("d=%d\n", d);
 	return 0;
 }*/
 
-//Ìõ¼ş²Ù×÷·û
+//æ¡ä»¶æ“ä½œç¬¦
 /*int main() {
 	int a = 10;
 	int b = 20;
-	int arr[10] = { 0 };//Ã¿¸öÔªËØ³õÊ¼»¯Îª0
-	int max = a > b ? a : b;//ÈıÄ¿²Ù×÷·û,Ò²½ĞÌõ¼ş²Ù×÷·û
-	//exp1?exp2:exp3---->exp1Èç¹ûÎªÕæ£¬ÔòÖ´ĞĞexp2£»·ñÔòÖ´ĞĞexp3¡£
+	int arr[10] = { 0 };//æ¯ä¸ªå…ƒç´ åˆå§‹åŒ–ä¸º0
+	int max = a > b ? a : b;//ä¸‰ç›®æ“ä½œç¬¦,ä¹Ÿå«æ¡ä»¶æ“ä½œç¬¦
+	//exp1?exp2:exp3---->exp1å¦‚æœä¸ºçœŸï¼Œåˆ™æ‰§è¡Œexp2ï¼›å¦åˆ™æ‰§è¡Œexp3ã€‚
 	printf("%d\n", max);
 	return 0;
 }*/
 
-//³£¼û¹Ø¼ü×Ö£º
+//å¸¸è§å…³é”®å­—ï¼š
 // atuo,break,case,char,const,continue,default,do,double,else,enum,
 //extern,float,for,goto,if,int,long,register,return,short,signed,
 //sizeof,static,struct,switch,typedef,union,unsigned,void,volatile,while
 
 /*int main() {
-	auto int a = 10;//¾Ö²¿±äÁ¿£¬ÓÖ½Ğ×Ô¶¯±äÁ¿£¬¿ÉÒÔÊ¡µô
-	register int b = 10;//½¨Òé°Ñb¶¨Òå³É¼Ä´æÆ÷±äÁ¿
-	int c = -5;//int¶¨ÒåµÄÊÇÓĞ·ûºÅµÄ±äÁ¿£¬int=signed int
-	unsigned int d = 6;//ÎŞ·ûºÅ±äÁ¿£¬ÓÀÔ¶¶¼ÊÇÕıÊı
+	auto int a = 10;//å±€éƒ¨å˜é‡ï¼Œåˆå«è‡ªåŠ¨å˜é‡ï¼Œå¯ä»¥çœæ‰
+	register int b = 10;//å»ºè®®æŠŠbå®šä¹‰æˆå¯„å­˜å™¨å˜é‡
+	int c = -5;//intå®šä¹‰çš„æ˜¯æœ‰ç¬¦å·çš„å˜é‡ï¼Œint=signed int
+	unsigned int d = 6;//æ— ç¬¦å·å˜é‡ï¼Œæ°¸è¿œéƒ½æ˜¯æ­£æ•°
 	unsigned int e = -5;//e=4294967291
-	printf("%d\n", e);//´òÓ¡³öÀ´£¬eÈÔÈ»ÊÇ-5
+	printf("%d\n", e);//æ‰“å°å‡ºæ¥ï¼Œeä»ç„¶æ˜¯-5
 
 	typedef unsigned int u_int;
-	u_int num = 20;   //µÈÍ¬ÓÚunsigned int num = 20
+	u_int num = 20;   //ç­‰åŒäºunsigned int num = 20
 	return 0;	
 }*/
 
-//staticµÄÓÃ·¨(ĞŞÊÎ¾Ö²¿±äÁ¿,¸Ä±äÁË±äÁ¿µÄÉúÃüÖÜÆÚ£¬Ê¹ÉúÃüÖÜÆÚ±ä³¤£©
+//staticçš„ç”¨æ³•(ä¿®é¥°å±€éƒ¨å˜é‡,æ”¹å˜äº†å˜é‡çš„ç”Ÿå‘½å‘¨æœŸï¼Œä½¿ç”Ÿå‘½å‘¨æœŸå˜é•¿ï¼‰
 /*void test() {
-	//int a = 1;		//aÊÇÒ»¸ö¾Ö²¿±äÁ¿
-	static int a = 1;//aÊÇÒ»¸ö¾²Ì¬µÄ¾Ö²¿±äÁ¿
+	//int a = 1;		//aæ˜¯ä¸€ä¸ªå±€éƒ¨å˜é‡
+	static int a = 1;//aæ˜¯ä¸€ä¸ªé™æ€çš„å±€éƒ¨å˜é‡
 	a++;
 	printf("a=%d\n", a);
 }
@@ -91,23 +91,23 @@ int main() {
 	return 0;
 }*/
 
-//staticµÄÓÃ·¨(ĞŞÊÎÈ«¾Ö±äÁ¿£¬¸Ä±äÁË±äÁ¿µÄ×÷ÓÃÓò£¬¾²Ì¬µÄÈ«¾Ö
-//±äÁ¿Ö»ÄÜÔÚ×Ô¼ºËùÔÚµÄÔ´ÎÄ¼şÄÚ²¿Ê¹ÓÃ£¬³öÁËÔ­ÎÄ¼ş¾ÍÎŞ·¨Ê¹ÓÃÁË)
-//staticĞŞÊÎº¯Êı£¬¸Ä±äÁËº¯ÊıµÄÁ´½ÓÊôĞÔ£¬ÆÕÍ¨º¯Êı¾ßÓĞÍâ²¿Á´½ÓÊôĞÔ£¬
-//µ±±»staticĞŞÊÎºó£¬±ä³ÉÁËÄÚ²¿Á´½ÓÊôĞÔ¡£Ğ§¹ûÍ¬ĞŞÊÎÈ«¾Ö±äÁ¿Ò»Ñù¡£
+//staticçš„ç”¨æ³•(ä¿®é¥°å…¨å±€å˜é‡ï¼Œæ”¹å˜äº†å˜é‡çš„ä½œç”¨åŸŸï¼Œé™æ€çš„å…¨å±€
+//å˜é‡åªèƒ½åœ¨è‡ªå·±æ‰€åœ¨çš„æºæ–‡ä»¶å†…éƒ¨ä½¿ç”¨ï¼Œå‡ºäº†åŸæ–‡ä»¶å°±æ— æ³•ä½¿ç”¨äº†)
+//staticä¿®é¥°å‡½æ•°ï¼Œæ”¹å˜äº†å‡½æ•°çš„é“¾æ¥å±æ€§ï¼Œæ™®é€šå‡½æ•°å…·æœ‰å¤–éƒ¨é“¾æ¥å±æ€§ï¼Œ
+//å½“è¢«staticä¿®é¥°åï¼Œå˜æˆäº†å†…éƒ¨é“¾æ¥å±æ€§ã€‚æ•ˆæœåŒä¿®é¥°å…¨å±€å˜é‡ä¸€æ ·ã€‚
 /*static int g_val3=2030;
 int main() {
 	extern int g_val;
 	extern int g_val2;
 	printf("%d\n", g_val);
-	//printf("%d\n", g_val2);//²»ÄÜÊ¹ÓÃg_val2
+	//printf("%d\n", g_val2);//ä¸èƒ½ä½¿ç”¨g_val2
 	printf("%d\n", g_val3);
 	return 0;
 }*/
 
-//define ¶¨Òå³£Á¿ºÍºê
+//define å®šä¹‰å¸¸é‡å’Œå®
 /*#define MAXA 2020
-#define MAX(x,y)( x > y ? x : y)//Ãû×Ö²»ÄÜÏàÍ¬
+#define MAX(x,y)( x > y ? x : y)//åå­—ä¸èƒ½ç›¸åŒ
 int main() {
 	int a = 30;
 	int b = 20;
@@ -119,13 +119,13 @@ int main() {
 
 }*/
 
-//Ö¸Õë
+//æŒ‡é’ˆ
 main() {
 	int a = 10;
-	printf("%p\n", &a);//´òÓ¡aµÄµØÖ·
-	int* p = &a;  //È¡µØÖ·
+	printf("%p\n", &a);//æ‰“å°açš„åœ°å€
+	int* p = &a;  //å–åœ°å€
 	printf("%p\n", p);
-	*p = 30;//*½âÒıÓÃ²Ù×÷·û
+	*p = 30;//*è§£å¼•ç”¨æ“ä½œç¬¦
 	printf("*p=%d\n", *p);
 	printf("a=%d\n", a);
 	char ch = 'c';
