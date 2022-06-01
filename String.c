@@ -1,54 +1,189 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include<stdio.h>
-#include<string.h>
+#include<stdio.h>	
+#include<string.h>	
+#include<assert.h>
 
-//å­—ç¬¦ä¸²
-/*int main() {
-	char arr1[] = "abc";//\0éšè—åœ¨å­—ç¬¦ä¸²ç»“å°¾
-    // char arr2[] = { 'a','b','c','\0' };//\0--å­—ç¬¦ä¸²çš„ç»“æŸæ ‡å¿—ã€‚	
-	char arr2[] = { 'a','b','c',0 };//0æ­¤å¤„å¥½åƒä¹Ÿå¯ä»¥(\0çš„ASCII	ç¼–ç æ˜¯0ï¼‰
-	 //æ­¤å¤„çš„0ä¸èƒ½åŠ å•å¼•å·ï¼Œå¦åˆ™ï¼Œå®ƒç®—ä½œä¸€ä¸ªå­—ç¬¦ï¼Œè€Œä¸æ˜¯ç»“æŸæ ‡å¿—
-	char arr3[] = { 'a','b','c' };
-	printf("%s\n", arr1);
-	printf("%s\n", arr2);
-	//strlen---string length æ±‚å­—ç¬¦ä¸²çš„é•¿åº¦
-	printf("%d\n", strlen(arr1));//3ï¼Œ\0ä¸ç®—åœ¨é•¿åº¦å†…
-	printf("%d\n", strlen(arr2));//3
-	printf("%d\n", strlen(arr3));//éšæœºå€¼
+//CÓïÑÔÃ»ÓĞ×Ö·û´®ÀàĞÍ¡£×Ö·û´®Í¨³£·ÅÔÚ³£Á¿×Ö·û´®ÖĞ£¬»òÕß×Ö·ûÊı×éÖĞ£»³£Á¿×Ö·û´®²»ÄÜĞŞ¸Ä£»
 
+//strlen:ÈıÖÖĞ´·¨:
+//1.¼ÆÊıÆ÷·¨
+//2.µİ¹é(²»ÓÃÁÙÊ±±äÁ¿)
+//3.Ö¸Õë¼õÖ¸Õë
+/*int my_strlen( const char*p) {//¼ÆÊıÆ÷·¨
+	assert(p!=NULL);
+	int count = 0;
+	while (*p != 0) {
+		p++;
+		count++;
+	}
+	return count;
+}
+int main() {
+	char arr[] = "abdcdef";
+	int len = my_strlen(arr);
+	printf("%d\n", len);
+
+	if (strlen("abc") - strlen("abcdef") > 0)//strlen·µ»ØÎŞ·ûºÅÕûĞÍ£¬3-6=-3£¬-3
+		//°´²¹Âë´æÔÚÄÚ´æÖĞ£¬±»µ±³ÉÎŞ·ûºÅÕûĞÍ£¬ÕâÊÇÒ»¸öºÜ´óµÄÊı£¬´óÓÚ0
+		printf("hehe\n");//»áÖ´ĞĞ´Ë¾ä
+	else 
+		printf("haha\n");
 	return 0;
 }*/
 
-//è½¬ä¹‰å­—ç¬¦
-int main() {
-	printf("abcn");
-	printf("abc\n");//\nè½¬ä¹‰å­—ç¬¦ï¼Œè¡¨ç¤ºæ¢è¡Œ
-
-	printf("c:\test\32\test.c\n");//\t--->åˆ¶è¡¨ç¬¦ï¼Œ\32-->
-	printf("c:\\test\\32\\test.c\n");//\\è®©\ä¸å†è¡¨ç¤ºè½¬ä¹‰
-
-	printf("%c\n", '\'');
-	printf("%s\n", "\"");
-
-	printf("(are you ok??)\n");//??)--->ä¸‰å­—æ¯è¯(æ—©æœŸè¯­æ³•,ç°åœ¨å·²ä¸å­˜åœ¨äº†)
-	
-	printf("%d\n", strlen("c:\test\32\test.c"));//13,\32ä½œä¸ºå…«è¿›åˆ¶çš„æ•°ï¼Œ
-	//è½¬æ¢æˆåè¿›åˆ¶çš„æ•°ï¼Œæ‰¾å‡ºå¯¹åº”çš„ASCIIç å€¼(26)ï¼Œå¯¹åº”çš„å­—ç¬¦ã€‚
-	//\ddd  dddè¡¨ç¤ºå…«è¿›åˆ¶çš„æ•°å­—ï¼Œå†å¯¹åº”ASCIIç ï¼Œå¯¹åº”çš„å­—ç¬¦ï¼›
-	//\xdd  ddè¡¨ç¤ºåå…­è¿›åˆ¶çš„æ•°å­—ï¼Œå†å¯¹åº”ASCIIç ï¼Œå¯¹åº”çš„å­—ç¬¦ï¼›
-
-	return 0;
+//strcpy:Ê¹ÓÃÊ±£¬Ô´×Ö·û´®±ØĞëÓĞ'\0'½áÎ²£¬²¢ÇÒ'\0'Ò²»á¿½±´¹ıÈ¥¡£Ä¿±ê¿Õ¼ä±ØĞë×ã¹»´ó£¬Ä¿±ê
+//¿Õ¼ä±ØĞë¿ÉĞŞ¸Ä£¬¼´Ä¿±ê¿Õ¼ä²»ÄÜÊÇ³£Á¿×Ö·û´®¡£
+/*void my_strcpy(char*dest,const char*src) {
+	assert(dest != NULL);
+	assert(src != NULL);
+	while (*dest++ = *src++) {
+		;//´Ë·ÖºÅ¿ÉÊ¡ÂÔ
+	}
 }
+int main() {
+	char arr1[] = "abcdefg";
+	char arr2[] = "heng";
+	//strcpy(arr1, arr2);
+	my_strcpy(arr1, arr2);
+	//arr1 = arr2;//err,
+	printf("%s\n", arr1);
+	return 0;
+}*/
 
-///*cè¯­è¨€ä¸æ”¯æŒåµŒå¥—æ³¨é‡Šï¼Œå³/*/*  */*/
-//æ³¨é‡Šå¿«æ·é”®ctr+k+c;å–æ¶ˆæ³¨é‡Šä¸ºctr+k+u
+//strcat:
+/*char* my_strcat(char*dest,const char*src) {
+	assert(dest != NULL);
+	assert(src);//Èç¹ûÊÇ¿ÕÖ¸Õë£¬ÔòÎª0£¬Ìõ¼şÎª¼Ù
+	char*p = dest;
+	while (*dest) {
+		dest++;
+	}
+	while (*dest++ = *src++) {
+		;
+	}
+	return p;
+}
+int main() {
+	char arr1[40] = "abcdefg\0xxxxxxxxxx";//Ä¿±ê¿Õ¼ä±ØĞë×ã¹»´ó,±ØĞë¿ÉĞŞ¸Ä
+	char arr2[] = "heng";//Ô´×Ö·û´®±ØĞëÓĞ\0,ÇÒ\0Ò²×·¼Óµ½Ä¿±êÉÏ
+	my_strcat(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+}*/
 
-//å­—ç¬¦ä¸²ç»“æŸæ ‡å¿—ï¼š\0 å®ƒçš„ASCIIç å€¼ä¸º0
-//'\0'--è½¬ä¹‰å­—ç¬¦ï¼š0
-//0 è¡¨ç¤ºæ•°å­—0ï¼Œå®ƒçš„ASCIIç å€¼ä¸º48
-//'0'è¡¨ç¤ºå­—ç¬¦0
-// EOF :end of file -æ–‡ä»¶ç»“æŸæ ‡å¿—ï¼Œå®é™…å€¼ä¸º-1
-//\0ä¸ç®—å­—ç¬¦ä¸²çš„é•¿åº¦ã€‚ä½†æ˜¯å½“å­—ç¬¦ä¸²å­˜åˆ°æ•°ç»„ä¸­æ˜¯ï¼Œ\0éœ€è¦å ä¸€ä¸ªæ•°ç»„å…ƒç´ ã€‚å½“ç”¨strlenè®¡ç®—æ•°ç»„é•¿åº¦æ—¶ï¼Œå¦‚æœæ•°ç»„ä¸­æ²¡æœ‰\0ï¼Œåˆ™è¾“å‡ºçš„é•¿åº¦æ˜¯
-//éšæœºå€¼ï¼ˆå› ä¸ºå®ƒè¦ä¸€ç›´æ•°åˆ°\0ä¸ºæ­¢ï¼‰ã€‚
-//å¹¶ä¸æ˜¯æ‰€æœ‰çš„ï¼ˆ/å­—æ¯ï¼‰éƒ½æ˜¯è½¬ä¹‰å­—ç¬¦
+//strcmp
+/*int main() {
+	char*p1 = "abcdefg";//Êµ¼ÊÊÇ½«aµÄµØÖ·¸³¸øÁËp1;
+	char*p2 = "heng";//Êµ¼ÊÊÇ½«hµÄµØÖ·¸³¸øÁËp2;
+	//if ("abcdefg" == "heng") {}//Êµ¼ÊÊÇaºÍhµÄµØÖ·±È½Ï£¬¿Ï¶¨²»»áÏàµÈ
+	int ret = strcmp(p1, p2);//±È½ÏµÄÊÇ×Ö·ûasciiÂë¡£vs±àÒëÆ÷ÏÂ£¬Ö»·µ»Ø1,0£¬-1¡£
+	printf("%d\n", ret);//linuxÏÂgcc±àÒëÆ÷£¬·µ»ØµÄÊÇASCIIÂëµÄ²îÖµ£»
+	char arr1[] = "bbcdefg";
+	char arr2[] = "heng";
+	return 0;
+}*/
+
+//strncpy(char*dest,char*src,int num)
+//Ö»¿½±´num¸ö×Ö·û£¬²»»á×Ô¶¯Ôö¼Ó\0£»Èç¹ûsrcÖĞÃ»ÓĞnum¸ö×Ö·û£¬ÔòÔÚ¿½Íêsrc×Ö·ûºó£¬²¹\0´Õ¼¯num¸ö×Ö·û
+
+//strncat(char*dest,char*src,int num)
+//Ö»×·¼Ónum¸ö×Ö·û£¬×·¼Óºó¼Ó\0£»Èç¹û²»¹»num¸ö×Ö·û£¬Ôò×·¼ÓÍêsrcºó£¬ÔÙ×·¼Ó1¸ö\0£¬¶ø²»¹ÜÊÇ·ñ´ÕÆëÁËnum¸ö×Ö·û
+/*int main() {
+	char arr1[30] = "abcd\0xxxxxxxxxxxxxxxxxx";
+	char arr2[] = "heng";
+	strncat(arr1, arr2, 3);
+	printf("%s\n", arr2);	
+	return 0;
+}*/
+
+//strncmp
+/*int main(){
+	const char*p1 = "abcdef";
+	const char*p2 = "abcfar";
+	int res1 = strcmp(p1, p2);
+	int res2 = strncmp(p1, p2, 3);
+	int res3 = strncmp(p1, p2, 4);
+	printf("%d %d %d", res1, res2, res3);
+	return 0;
+	}*/
+
+//NULLÖ¸¿ÕÖ¸Õë£¬NUL/NullÖ¸µÄÊÇ\0
+//strstr
+/*char* my_strstr(const char*dest, const char* src) {
+	assert(dest&&src);
+	if (*src == 0)
+		return (char*)dest;
+	char* src0 = (char*)src;//const char*µÄ±äÁ¿¸³Öµ¸øcha*µÄ±äÁ¿£¬ÒªÇ¿ÖÆÀàĞÍ×ª»»Ò»ÏÂ
+	do {
+		while (*dest != *src)
+			dest++;
+		char*tmp = (char*)dest;
+		while (*dest == *src) {	
+			dest++;
+			src++;
+			if (*src == 0)
+				return tmp;
+		}		
+		src = src0;
+		dest = tmp + 1;//Ö¸ÕëÍùºóÒÆ¶¯Ò»Î»£¬Òª¼Ó£¬Èç¹ûĞ´³É¼õ£¬»áËÀÑ­»·
+	} while (*dest != 0);	
+	return NULL;
+}
+int main() {
+	char* p1 =  "aabbbcc";//abbbc 
+	char* p2 = "bbc";//bbc fcd
+	//char* res=strstr(p1, p2);
+	char* res=my_strstr(p1, p2);
+	if (res == NULL)
+		printf("²»´æÔÚ\n");
+	else {
+		printf("´æÔÚ£¬µØÖ·ÊÇ%p\n", res);//·µ»ØµÚÒ»´ÎÕÒµ½µÄµØÖ·
+		printf("´æÔÚ£¬µØÖ·ÊÇ%s\n", res);
+	}	
+	return 0;
+}*/
+
+//strtok
+/*int main() {
+	char arr[] = "amourousyou@163.com";
+	char*p = ".@";
+	char buff[60] = { 0 };
+	char buff2[60] = { 0 };
+	strcpy(buff, arr);
+	strcpy(buff2, arr);
+	char*res1 = strtok(buff, p);//Ò»°ã²»»áÕâÃ´µ÷ÓÃ
+	char*res2 = strtok(NULL, p);
+	char*res3 = strtok(NULL, p);
+	printf("%s %s %s\n", res1, res2, res3);
+
+	//Ò»°ãÕâÃ´µ÷ÓÃ
+	char* res = NULL;
+	for (res = strtok(buff2, p); res != NULL; res = strtok(NULL, p)) {
+		printf("%s\n", res);
+	}//strtokÄÚ²¿¿ÉÄÜ»á´´½¨Ò»¸ö¾²Ì¬±äÁ¿£¬¼Ç×¡ÉÏ´ÎÔËĞĞµÄÎ»ÖÃ	
+	return 0;
+}*/
+
+//strerror
+#include<errno.h>
+/*int main() {
+	//0--no error;
+	//1--Operation nont permitted
+	char* p1 = strerror(1);//1,½Ğ´íÎóÂë
+	//µ±cÓïÑÔµÄ¿âº¯ÊıÖ´ĞĞ¹ı³ÌÖĞ·¢Éú´íÎóÊ±£¬¾Í»á°Ñ¶ÔÓ¦µÄ´íÎóÂë£¬¸³Öµµ½errnoÖĞ
+	//char* p2 = strerror(errno);
+	printf("%s\n", p1);
+	//printf("%s\n", p2);
+	return 0;
+}*/
+
+/*int main() {
+	FILE* p = fopen("test,txt", "r");
+	if (p == NULL)
+		printf("%s\n", strerror(errno));
+	else
+		printf("open file success!\n");
+	return 0;
+}*/
+
 
